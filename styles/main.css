@@ -1,0 +1,91 @@
+html {
+    height: 100vh;
+    background-color: #001011;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100%;
+    color: #D2E6EE;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 3rem 0;
+}
+
+#player-info-container {
+    width: 32rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-marker {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 3rem;
+    padding-bottom: 0.5rem;
+}
+
+#board {
+    margin-top: 2rem;
+    display: grid;
+    height: 32rem;
+    width: 32rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.space {
+    border: 0.2rem solid salmon;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 6rem;
+}
+
+#board .top {
+    border-top: none;
+}
+
+#board .right {
+    border-right: none;
+}
+
+#board .bottom {
+    border-bottom: none;
+}
+
+#board .left {
+    border-left: none;
+}
+
+#restart-button-container {
+    font-size: 3rem;
+    margin-top: 3rem;
+    transition: all 0.4s;
+}
+
+#restart-button-container:hover {
+    transform: rotate(-90deg);
+}
+
+#restart-button-container:active {
+    transform: scale(1.25, 1.25) rotate(-90deg);
+}
+
+.material-icons-round {
+    font-size: 1em;
+}
