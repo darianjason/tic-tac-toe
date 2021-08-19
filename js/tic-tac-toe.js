@@ -107,7 +107,12 @@ const gameController = (() => {
         }
     };
 
-    // TODO: add restart button functionality
+    let restartButton = document.getElementById("restart-button");
+
+    restartButton.addEventListener("click", event => {
+        displayController.resetBoard();
+        gameBoard.resetBoard();
+    });
 
     return {
         playMove,
