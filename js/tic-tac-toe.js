@@ -1,13 +1,19 @@
 const gameBoard = (() => {
     let _board = new Array(9); // TODO: use 2D array?
 
+    let _spaces = Array.from(document.getElementsByClassName("space"));
+
+    _spaces.forEach((space, index) => {
+        space.setAttribute("data-index", index);
+    });
+
     const updateBoard = (marker, index) => {
-        // TODO: update board array based on marker position (index?)
+        _board.splice(index, 1, marker);
     };
 
     const resetBoard = () => {
         // TODO: reset board array
-    }
+    };
 
     return {
         updateBoard,
@@ -80,7 +86,7 @@ const gameController = (() => {
         if (!space.textContent) {
             displayController.fillSpace(space, currentPlayer.getMarker());
 
-            gameBoard.updateBoard(currentPlayer.getMarker());
+            gameBoard.updateBoard(currentPlayer.getMarker(), space.getAttribute("data-index"));
 
             _swapPlayers();
 
