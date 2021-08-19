@@ -72,17 +72,27 @@ h1 {
     border-left: none;
 }
 
-#restart-button-container {
+button {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    color: inherit;
+}
+
+#restart-button {
     font-size: 3rem;
     margin-top: 3rem;
     transition: all 0.4s;
 }
 
-#restart-button-container:hover {
+#restart-button:hover {
     transform: rotate(-90deg);
 }
 
-#restart-button-container:active {
+#restart-button:active {
     transform: scale(1.25, 1.25) rotate(-90deg);
 }
 
