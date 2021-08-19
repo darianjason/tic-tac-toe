@@ -12,11 +12,12 @@ const gameBoard = (() => {
     };
 
     const resetBoard = () => {
-        // TODO: reset board array
+        _board = new Array(9);
     };
 
     return {
         updateBoard,
+        resetBoard
     };
 })();
 
@@ -43,6 +44,12 @@ const displayController = (() => {
         space.append(marker);
     };
 
+    const resetBoard = () => {
+        _spaces.forEach(space => {
+            space.textContent = "";
+        });
+    };
+
     const displayPlayerInfo = (player) => {
         let playerInfo = document.createElement("div");
         playerInfo.classList.add("player-info");
@@ -63,12 +70,9 @@ const displayController = (() => {
         // TODO: change color for current turn's player
     };
 
-    const resetBoard = () => {
-        // TODO: clear all markers
-    };
-
     return {
         fillSpace,
+        resetBoard,
         displayPlayerInfo
     };
 })();
