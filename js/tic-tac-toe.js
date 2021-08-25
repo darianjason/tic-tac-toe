@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-    let _board = new Array(9); // TODO: use 2D array?
+    let _board = new Array(9);
 
     let _spaces = Array.from(document.getElementsByClassName("space"));
 
@@ -15,9 +15,41 @@ const gameBoard = (() => {
         _board = new Array(9);
     };
 
+    const checkWin = (index1, index2, index3) => {
+        if (_board[index1] && _board[index2] && _board[index3]) {
+            if (_board[index1] === _board[index2] && _board[index2] === _board[index3]) {
+                gameController.win(index1, index2, index3);
+            }
+        }
+    };
+
+    const isFull = arr => {
+        for (let i = 0; i < arr.length; i++) {
+            if (!arr[i]) return false;
+        }
+
+        return true;
+    };
+
+    const checkGameOver = () => {
+        checkWin(0, 1, 2);
+        checkWin(3, 4, 5);
+        checkWin(6, 7, 8);
+        checkWin(0, 3, 6);
+        checkWin(1, 4, 7);
+        checkWin(2, 5, 8);
+        checkWin(0, 4, 8);
+        checkWin(2, 4, 6);
+
+        if (isFull(_board)) {
+            gameController.tie();
+        }
+    };
+
     return {
         updateBoard,
-        resetBoard
+        resetBoard,
+        checkGameOver
     };
 })();
 
