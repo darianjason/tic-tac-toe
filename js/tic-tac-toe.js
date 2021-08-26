@@ -139,9 +139,10 @@ const gameController = (() => {
 
             gameBoard.updateBoard(currentPlayer.getMarker(), space.getAttribute("data-index"));
 
-            _swapPlayers();
+            // TODO: start after 4th turn? (use turnCounter)
+            gameBoard.checkGameOver();
 
-            // TODO: checkGameOver function to check for win (3 in a row) or tie (board is full without win)
+            _swapPlayers();
         }
     };
 
@@ -154,16 +155,36 @@ const gameController = (() => {
         }
     };
 
+    const win = winningIndexArray => {
+        displayController.highlightWinningMarkers(winningIndexArray);
+
+        // TODO: display winning message with player's name
+        console.log(currentPlayer.getName() + " has won!");
+
+        gameBoard.disableBoardClicks();
+    };
+
+    const tie = () => {
+        // TODO: display "game over, it's a tie" message
+        console.log("Game over, it's a tie!");
+
+        gameBoard.disableBoardClicks();
+    };
+
     let restartButton = document.getElementById("restart-button");
 
     restartButton.addEventListener("click", event => {
-        displayController.resetBoard();
         gameBoard.resetBoard();
+        displayController.resetBoard();
+
+        currentPlayer = _player1;
     });
 
     return {
         playMove,
-        currentPlayer
+        currentPlayer,
+        win,
+        tie
     };
 })();
 
