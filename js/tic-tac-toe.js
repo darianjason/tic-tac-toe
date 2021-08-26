@@ -7,6 +7,14 @@ const gameBoard = (() => {
         space.setAttribute("data-index", index);
     });
 
+    const enableBoardClicks = () => {
+        _spaces.forEach(space => {
+            space.addEventListener("click", event => {
+                gameController.playMove(space);
+            });
+        });
+    };
+
     const updateBoard = (marker, index) => {
         _board.splice(index, 1, marker);
     };
@@ -47,6 +55,7 @@ const gameBoard = (() => {
     };
 
     return {
+        enableBoardClicks,
         updateBoard,
         resetBoard,
         checkGameOver
@@ -65,12 +74,6 @@ const Player = (name, marker) => {
 
 const displayController = (() => {
     let _spaces = Array.from(document.getElementsByClassName("space"));
-
-    _spaces.forEach(space => {
-        space.addEventListener('click', event => {
-            gameController.playMove(space);
-        });
-    });
 
     const fillSpace = (space, marker) => {
         space.append(marker);
@@ -151,3 +154,5 @@ const gameController = (() => {
         currentPlayer
     };
 })();
+
+gameBoard.enableBoardClicks();
