@@ -117,10 +117,21 @@ const displayController = (() => {
         // TODO: change color for current turn's player
     };
 
+    const highlightWinningMarkers = winningIndexArray => {
+        _spaces.forEach(space => {
+            for (let i = 0; i < winningIndexArray.length; i++) {
+                if (space.getAttribute("data-index") == winningIndexArray[i]) {
+                    space.classList.add("winning-marker");
+                }
+            }
+        });
+    };
+
     return {
         fillSpace,
         resetBoard,
-        displayPlayerInfo
+        displayPlayerInfo,
+        highlightWinningMarkers
     };
 })();
 
