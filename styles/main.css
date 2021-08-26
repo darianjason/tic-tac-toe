@@ -99,3 +99,8 @@ button {
 .material-icons-round {
     font-size: 1em;
 }
+
+.winning-marker {
+    color: salmon;
+    transition: color 0.5s;
+}
