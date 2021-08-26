@@ -30,6 +30,11 @@ const gameBoard = (() => {
 
     const resetBoard = () => {
         _board = new Array(9);
+
+        // re-assign _spaces after replacing with cloned nodes
+        _spaces = Array.from(document.getElementsByClassName("space"));
+
+        enableBoardClicks();
     };
 
     const checkWin = (index1, index2, index3) => {
@@ -92,8 +97,12 @@ const displayController = (() => {
     };
 
     const resetBoard = () => {
+        // re-assign _spaces after replacing with cloned nodes
+        _spaces = Array.from(document.getElementsByClassName("space"));
+
         _spaces.forEach(space => {
             space.textContent = "";
+            space.classList.remove("winning-marker");
         });
     };
 
