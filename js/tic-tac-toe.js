@@ -35,7 +35,9 @@ const gameBoard = (() => {
     const checkWin = (index1, index2, index3) => {
         if (_board[index1] && _board[index2] && _board[index3]) {
             if (_board[index1] === _board[index2] && _board[index2] === _board[index3]) {
-                gameController.win(index1, index2, index3);
+                const winningIndexArray = [index1, index2, index3];
+
+                gameController.win(winningIndexArray);
             }
         }
     };
