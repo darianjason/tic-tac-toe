@@ -15,6 +15,15 @@ const gameBoard = (() => {
         });
     };
 
+    const disableBoardClicks = () => {
+        _spaces.forEach(space => {
+            // cloneNode() removes event listeners
+            let newSpace = space.cloneNode(true);
+
+            space.replaceWith(newSpace);
+        });
+    };
+
     const updateBoard = (marker, index) => {
         _board.splice(index, 1, marker);
     };
@@ -56,6 +65,7 @@ const gameBoard = (() => {
 
     return {
         enableBoardClicks,
+        disableBoardClicks,
         updateBoard,
         resetBoard,
         checkGameOver
