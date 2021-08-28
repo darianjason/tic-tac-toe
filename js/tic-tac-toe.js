@@ -43,6 +43,8 @@ const gameBoard = (() => {
                 const winningIndexArray = [index1, index2, index3];
 
                 gameController.win(winningIndexArray);
+
+                return true;
             }
         }
     };
@@ -56,16 +58,18 @@ const gameBoard = (() => {
     };
 
     const checkGameOver = () => {
-        checkWin(0, 1, 2);
-        checkWin(3, 4, 5);
-        checkWin(6, 7, 8);
-        checkWin(0, 3, 6);
-        checkWin(1, 4, 7);
-        checkWin(2, 5, 8);
-        checkWin(0, 4, 8);
-        checkWin(2, 4, 6);
+        let won = false;
 
-        if (isFull(_board)) {
+        won = checkWin(0, 1, 2);
+        won = checkWin(3, 4, 5);
+        won = checkWin(6, 7, 8);
+        won = checkWin(0, 3, 6);
+        won = checkWin(1, 4, 7);
+        won = checkWin(2, 5, 8);
+        won = checkWin(0, 4, 8);
+        won = checkWin(2, 4, 6);
+
+        if (won != true && isFull(_board)) {
             gameController.tie();
         }
     };
