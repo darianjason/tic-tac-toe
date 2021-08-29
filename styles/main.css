@@ -104,3 +104,10 @@ button {
     color: salmon;
     transition: color 0.5s;
 }
+
+#winner-text {
+    position: absolute;
+    top: 7.5rem;
+    font-weight: bold;
+    color: salmon;
+}
