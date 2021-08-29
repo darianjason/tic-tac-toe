@@ -140,11 +140,26 @@ const displayController = (() => {
         });
     };
 
+    const displayWinnerText = winner => {
+        const playerMarkers = Array.from(document.getElementsByClassName("player-marker"));
+
+        playerMarkers.forEach(marker => {
+            if(marker.textContent === winner.getMarker()) {
+                let winnerText = document.createElement("div");
+                winnerText.id = "winner-text";
+                winnerText.textContent = "WINNER";
+
+                marker.parentNode.prepend(winnerText);
+            }
+        });
+    }
+
     return {
         fillSpace,
         resetBoard,
         displayPlayerInfo,
-        highlightWinningMarkers
+        highlightWinningMarkers,
+        displayWinnerText,
     };
 })();
 
@@ -182,8 +197,9 @@ const gameController = (() => {
     const win = winningIndexArray => {
         displayController.highlightWinningMarkers(winningIndexArray);
 
-        // TODO: display winning message with player's name
         console.log(currentPlayer.getName() + " has won!");
+
+        displayController.displayWinnerText(currentPlayer);
 
         gameBoard.disableBoardClicks();
     };
