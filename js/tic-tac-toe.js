@@ -144,7 +144,7 @@ const displayController = (() => {
         const playerMarkers = Array.from(document.getElementsByClassName("player-marker"));
 
         playerMarkers.forEach(marker => {
-            if(marker.textContent === winner.getMarker()) {
+            if (marker.textContent === winner.getMarker()) {
                 let winnerText = document.createElement("div");
                 winnerText.id = "winner-text";
                 winnerText.textContent = "WINNER";
@@ -152,7 +152,7 @@ const displayController = (() => {
                 marker.parentNode.prepend(winnerText);
             }
         });
-    }
+    };
 
     const resetWinnerText = () => {
         document.getElementById("winner-text").remove();
