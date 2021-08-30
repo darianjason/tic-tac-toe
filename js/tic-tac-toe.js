@@ -155,9 +155,13 @@ const displayController = (() => {
     };
 
     const resetWinnerText = () => {
-        document.getElementById("winner-text").remove();
-    }
-
+        const winnerText = document.getElementById("winner-text");
+    
+        if (winnerText) {
+            winnerText.remove();
+        }
+    };
+    
     return {
         fillSpace,
         resetBoard,
