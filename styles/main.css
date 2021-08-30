@@ -111,3 +111,10 @@ button {
     font-weight: bold;
     color: salmon;
 }
+
+#tie-text {
+    align-self: center;
+    font-weight: bold;
+    color: salmon;
+    font-size: 2rem;
+}
