@@ -162,13 +162,33 @@ const displayController = (() => {
         }
     };
     
+    const displayTieText = () => {
+        const playerInfoContainer = document.getElementById("player-info-container");
+    
+        const tieText = document.createElement("div");
+        tieText.id = "tie-text";
+        tieText.textContent = "TIE";
+    
+        playerInfoContainer.insertBefore(tieText, playerInfoContainer.lastChild);
+    };
+    
+    const resetTieText = () => {
+        const tieText = document.getElementById("tie-text");
+    
+        if (tieText) {
+            tieText.remove();
+        }
+    };
+
     return {
         fillSpace,
         resetBoard,
         displayPlayerInfo,
         highlightWinningMarkers,
         displayWinnerText,
-        resetWinnerText
+        resetWinnerText,
+        displayTieText,
+        resetTieText
     };
 })();
 
@@ -217,6 +237,8 @@ const gameController = (() => {
         // TODO: display "game over, it's a tie" message
         console.log("Game over, it's a tie!");
 
+        displayController.displayTieText();
+
         gameBoard.disableBoardClicks();
     };
 
@@ -226,6 +248,7 @@ const gameController = (() => {
         gameBoard.resetBoard();
         displayController.resetBoard();
         displayController.resetWinnerText();
+        displayController.resetTieText();
 
         currentPlayer = _player1;
     });
