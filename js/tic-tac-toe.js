@@ -154,12 +154,17 @@ const displayController = (() => {
         });
     }
 
+    const resetWinnerText = () => {
+        document.getElementById("winner-text").remove();
+    }
+
     return {
         fillSpace,
         resetBoard,
         displayPlayerInfo,
         highlightWinningMarkers,
         displayWinnerText,
+        resetWinnerText
     };
 })();
 
@@ -216,6 +221,7 @@ const gameController = (() => {
     restartButton.addEventListener("click", event => {
         gameBoard.resetBoard();
         displayController.resetBoard();
+        displayController.resetWinnerText();
 
         currentPlayer = _player1;
     });
