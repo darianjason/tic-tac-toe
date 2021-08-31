@@ -37,14 +37,16 @@ const gameBoard = (() => {
         enableBoardClicks();
     };
 
-    const checkWin = (index1, index2, index3) => {
-        if (_board[index1] && _board[index2] && _board[index3]) {
-            if (_board[index1] === _board[index2] && _board[index2] === _board[index3]) {
-                const winningIndexArray = [index1, index2, index3];
+    const checkWin = () => {
+        const winningIndices2DArray = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
-                gameController.win(winningIndexArray);
+        for (let i = 0; i < winningIndices2DArray.length; i++) {
+            if (_board[winningIndices2DArray[i][0]] && _board[winningIndices2DArray[i][1]] && _board[winningIndices2DArray[i][2]]) {
+                if (_board[winningIndices2DArray[i][0]] === _board[winningIndices2DArray[i][1]] && _board[winningIndices2DArray[i][1]] === _board[winningIndices2DArray[i][2]]) {
+                    gameController.win(winningIndices2DArray[i]);
 
-                return true;
+                    return true;
+                }
             }
         }
     };
@@ -60,16 +62,9 @@ const gameBoard = (() => {
     const checkGameOver = () => {
         let won = false;
 
-        won = checkWin(0, 1, 2);
-        won = checkWin(3, 4, 5);
-        won = checkWin(6, 7, 8);
-        won = checkWin(0, 3, 6);
-        won = checkWin(1, 4, 7);
-        won = checkWin(2, 5, 8);
-        won = checkWin(0, 4, 8);
-        won = checkWin(2, 4, 6);
+        won = checkWin();
 
-        if (won != true && isFull(_board)) {
+        if (isFull(_board) && won !== true) {
             gameController.tie();
         }
     };
@@ -226,7 +221,7 @@ const gameController = (() => {
     const win = winningIndexArray => {
         displayController.highlightWinningMarkers(winningIndexArray);
 
-        console.log(currentPlayer.getName() + " has won!");
+        // console.log(currentPlayer.getName() + " has won!");
 
         displayController.displayWinnerText(currentPlayer);
 
@@ -234,8 +229,7 @@ const gameController = (() => {
     };
 
     const tie = () => {
-        // TODO: display "game over, it's a tie" message
-        console.log("Game over, it's a tie!");
+        // console.log("Game over, it's a tie!");
 
         displayController.displayTieText();
 
