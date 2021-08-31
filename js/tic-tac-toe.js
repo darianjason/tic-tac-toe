@@ -191,16 +191,16 @@ const gameController = (() => {
     let _player1 = Player("Player 1", "X");
     let _player2 = Player("Player 2", "O");
 
-    let currentPlayer = _player1;
+    let _currentPlayer = _player1;
 
     displayController.displayPlayerInfo(_player1);
     displayController.displayPlayerInfo(_player2);
 
     const playMove = space => {
         if (!space.textContent) {
-            displayController.fillSpace(space, currentPlayer.getMarker());
+            displayController.fillSpace(space, _currentPlayer.getMarker());
 
-            gameBoard.updateBoard(currentPlayer.getMarker(), space.getAttribute("data-index"));
+            gameBoard.updateBoard(_currentPlayer.getMarker(), space.getAttribute("data-index"));
 
             // TODO: start after 4th turn? (use turnCounter)
             gameBoard.checkGameOver();
@@ -210,20 +210,20 @@ const gameController = (() => {
     };
 
     const _swapPlayers = () => {
-        if (currentPlayer === _player1) {
-            currentPlayer = _player2;
+        if (_currentPlayer === _player1) {
+            _currentPlayer = _player2;
         }
-        else if (currentPlayer === _player2) {
-            currentPlayer = _player1;
+        else if (_currentPlayer === _player2) {
+            _currentPlayer = _player1;
         }
     };
 
     const win = winningIndexArray => {
         displayController.highlightWinningMarkers(winningIndexArray);
 
-        // console.log(currentPlayer.getName() + " has won!");
+        // console.log(_currentPlayer.getName() + " has won!");
 
-        displayController.displayWinnerText(currentPlayer);
+        displayController.displayWinnerText(_currentPlayer);
 
         gameBoard.disableBoardClicks();
     };
@@ -244,12 +244,11 @@ const gameController = (() => {
         displayController.resetWinnerText();
         displayController.resetTieText();
 
-        currentPlayer = _player1;
+        _currentPlayer = _player1;
     });
 
     return {
         playMove,
-        currentPlayer,
         win,
         tie
     };
