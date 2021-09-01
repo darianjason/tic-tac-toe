@@ -121,8 +121,34 @@ const displayController = (() => {
         playerInfoContainer.appendChild(playerInfo);
     };
 
-    const highlightCurrentPlayer = currentPlayer => {
-        // TODO: change color for current turn's player
+    const highlightLastPlayer = () => {
+        const players = Array.from(document.getElementsByClassName("player-info"));
+
+        let highlighted = false;
+
+        for (let i = 0; i < players.length; i++) {
+            if (players[i].classList.contains("last-player")) {
+                highlighted = true;
+                break;
+            }
+        }
+
+        if (!highlighted) {
+            players[0].classList.add("last-player");
+        }
+        else {
+            players.forEach(player => {
+                player.classList.toggle("last-player");
+            });
+        }
+    };
+
+    const resetLastPlayer = () => {
+        const players = Array.from(document.getElementsByClassName("player-info"));
+
+        players.forEach(player => {
+            player.classList.remove("last-player");
+        });
     };
 
     const highlightWinningMarkers = winningIndexArray => {
@@ -179,6 +205,8 @@ const displayController = (() => {
         fillSpace,
         resetBoard,
         displayPlayerInfo,
+        highlightLastPlayer,
+        resetLastPlayer,
         highlightWinningMarkers,
         displayWinnerText,
         resetWinnerText,
@@ -198,6 +226,8 @@ const gameController = (() => {
 
     const playMove = space => {
         if (!space.textContent) {
+            displayController.highlightLastPlayer();
+
             displayController.fillSpace(space, _currentPlayer.getMarker());
 
             gameBoard.updateBoard(_currentPlayer.getMarker(), space.getAttribute("data-index"));
@@ -241,6 +271,7 @@ const gameController = (() => {
     restartButton.addEventListener("click", event => {
         gameBoard.resetBoard();
         displayController.resetBoard();
+        displayController.resetLastPlayer();
         displayController.resetWinnerText();
         displayController.resetTieText();
 
