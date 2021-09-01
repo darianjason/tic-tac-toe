@@ -118,3 +118,8 @@ button {
     color: salmon;
     font-size: 2rem;
 }
+
+.last-player {
+    color: salmon;
+    transition: color 0.4s;
+}
