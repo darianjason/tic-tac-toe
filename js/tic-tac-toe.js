@@ -82,9 +82,14 @@ const Player = (name, marker) => {
     const getName = () => name;
     const getMarker = () => marker;
 
+    const setName = newName => {
+        name = newName;
+    };
+
     return {
         getName,
-        getMarker
+        getMarker,
+        setName
     };
 };
 
@@ -123,6 +128,26 @@ const displayController = (() => {
 
         const playerInfoContainer = document.getElementById("player-info-container");
         playerInfoContainer.appendChild(playerInfo);
+    };
+
+    const allowChangePlayerNames = (player1, player2) => {
+        const playerNames = Array.from(document.getElementsByClassName("player-name"));
+
+        const players = new Array(player1, player2);
+
+        playerNames.forEach((playerName, index) => {
+            playerName.contentEditable = "true";
+
+            playerName.addEventListener("keydown", e => {
+                if (e.keyCode === 13) {
+                    playerName.blur();
+                }
+            });
+
+            playerName.onblur = () => {
+                players[index].setName(playerName.textContent);
+            };
+        });
     };
 
     const highlightLastPlayer = () => {
@@ -209,6 +234,7 @@ const displayController = (() => {
         fillSpace,
         resetBoard,
         displayPlayerInfo,
+        allowChangePlayerNames,
         highlightLastPlayer,
         resetLastPlayer,
         highlightWinningMarkers,
@@ -227,6 +253,7 @@ const gameController = (() => {
 
     displayController.displayPlayerInfo(_player1);
     displayController.displayPlayerInfo(_player2);
+    displayController.allowChangePlayerNames(_player1, _player2);
 
     const playMove = space => {
         if (!space.textContent) {
