@@ -37,6 +37,24 @@ h1 {
     padding-bottom: 0.5rem;
 }
 
+.player-name {
+    height: 1rem;
+    max-width: 8rem;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.player-name br {
+    display: none;
+}
+
+.player-name::-webkit-scrollbar {
+    display: none;
+}
+
 #board {
     margin-top: 2rem;
     display: grid;
