@@ -105,19 +105,23 @@ const displayController = (() => {
         });
     };
 
-    const displayPlayerInfo = (player) => {
-        let playerInfo = document.createElement("div");
+    const displayPlayerInfo = player => {
+        const playerInfo = document.createElement("div");
         playerInfo.classList.add("player-info");
 
-        let playerMarker = document.createElement("div");
+        const playerMarker = document.createElement("div");
         playerMarker.classList.add("player-marker");
 
         playerMarker.append(player.getMarker());
-
         playerInfo.append(playerMarker);
-        playerInfo.append(player.getName());
 
-        let playerInfoContainer = document.getElementById("player-info-container");
+        const playerName = document.createElement("div");
+        playerName.classList.add("player-name");
+
+        playerName.append(player.getName());
+        playerInfo.append(playerName);
+
+        const playerInfoContainer = document.getElementById("player-info-container");
         playerInfoContainer.appendChild(playerInfo);
     };
 
