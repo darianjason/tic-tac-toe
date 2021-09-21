@@ -1,9 +1,9 @@
 html {
     height: 100vh;
-    background-color: #001011;
+    background-color: #0C181D;
     font-family: 'Montserrat', sans-serif;
     font-size: 100%;
-    color: #D2E6EE;
+    color: #F7FFF7;
 }
 
 body {
@@ -14,13 +14,13 @@ body {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    padding: 3rem 0;
+    padding: 1.5rem 0;
 }
 
 #player-info-container {
-    width: 32rem;
+    width: 50vh;
     display: flex;
     justify-content: space-between;
 }
@@ -34,12 +34,12 @@ h1 {
 .player-marker {
     font-family: 'Fredoka One', sans-serif;
     font-size: 3rem;
-    padding-bottom: 0.5rem;
+    padding: 1.5rem 0 0.5rem 0;
 }
 
 .player-name {
-    height: 1rem;
-    max-width: 8rem;
+    height: 1.1rem;
+    max-width: 6rem;
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -58,20 +58,20 @@ h1 {
 #board {
     margin-top: 2rem;
     display: grid;
-    height: 32rem;
-    width: 32rem;
+    min-width: 50vh;
+    min-height: 50vh;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
 }
 
 .space {
-    border: 0.2rem solid salmon;
-    color: white;
+    border: 0.4vh solid #89BDD2;
+    color: #F7FFF7;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Fredoka One', sans-serif;
-    font-size: 6rem;
+    font-size: 10vh;
 }
 
 #board .top {
@@ -101,8 +101,10 @@ button {
 }
 
 #restart-button {
-    font-size: 3rem;
-    margin-top: 3rem;
+    font-size: 2.5rem;
+    margin: 2.5rem 0;
+    padding: 0.25rem;
+    border-radius: 4%;
     transition: all 0.4s;
 }
 
@@ -111,7 +113,12 @@ button {
 }
 
 #restart-button:active {
-    transform: scale(1.25, 1.25) rotate(-90deg);
+    transform: scale(1.2, 1.2) rotate(-90deg);
+}
+
+#restart-button:focus {
+    background-color: #F0A8C7;
+    color: #0C181D;
 }
 
 .material-icons-round {
@@ -119,25 +126,44 @@ button {
 }
 
 .winning-marker {
-    color: salmon;
-    transition: color 0.5s;
+    color: #F0A8C7;
+    transition: all 0.4s;
 }
 
 #winner-text {
     position: absolute;
-    top: 7.5rem;
     font-weight: bold;
-    color: salmon;
+    color: #F0A8C7;
+    transition: all 0.4s;
 }
 
 #tie-text {
     align-self: center;
     font-weight: bold;
-    color: salmon;
     font-size: 2rem;
+    color: #F0A8C7;
 }
 
 .last-player {
-    color: salmon;
+    color: #F0A8C7;
     transition: color 0.4s;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    #player-info-container {
+        width: 80vw;
+    }
+
+    #board {
+        min-width: 90vw;
+        min-height: 90vw;
+    }
+
+    .space {
+        font-size: 5rem;
+    }
 }
