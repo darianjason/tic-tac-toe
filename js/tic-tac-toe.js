@@ -9,7 +9,7 @@ const gameBoard = (() => {
 
     const enableBoardClicks = () => {
         _spaces.forEach(space => {
-            space.addEventListener("click", event => {
+            space.addEventListener("click", e => {
                 gameController.playMove(space);
             });
         });
@@ -64,7 +64,7 @@ const gameBoard = (() => {
 
         won = checkWin();
 
-        if (isFull(_board) && won !== true) {
+        if (isFull(_board) && !won) {
             gameController.tie();
         }
     };
@@ -195,7 +195,7 @@ const displayController = (() => {
 
         playerMarkers.forEach(marker => {
             if (marker.textContent === winner.getMarker()) {
-                let winnerText = document.createElement("div");
+                const winnerText = document.createElement("div");
                 winnerText.id = "winner-text";
                 winnerText.textContent = "WINNER";
 
@@ -246,8 +246,8 @@ const displayController = (() => {
 })();
 
 const gameController = (() => {
-    let _player1 = Player("Player 1", "X");
-    let _player2 = Player("Player 2", "O");
+    const _player1 = Player("Player 1", "X");
+    const _player2 = Player("Player 2", "O");
 
     let _currentPlayer = _player1;
 
@@ -297,9 +297,9 @@ const gameController = (() => {
         gameBoard.disableBoardClicks();
     };
 
-    let restartButton = document.getElementById("restart-button");
+    const _restartButton = document.getElementById("restart-button");
 
-    restartButton.addEventListener("click", event => {
+    _restartButton.addEventListener("click", e => {
         gameBoard.resetBoard();
         displayController.resetBoard();
         displayController.resetLastPlayer();
